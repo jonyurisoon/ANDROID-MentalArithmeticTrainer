@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Mental Arithmetic Trainer</string>
+    <string name="mental_arithmetic_trainer">Mental Arithmetic Trainer</string>
+    <string name="logo">logo</string>
+    <string name="background">background</string>
+    <string name="easy">Easy</string>
+    <string name="medium">medium</string>
+    <string name="hard">hard</string>
 </resources>

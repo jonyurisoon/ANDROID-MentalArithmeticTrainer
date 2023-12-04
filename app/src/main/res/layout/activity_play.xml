@@ -4,16 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".PlayActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="0dp"
+        android:contentDescription="@string/background"
+        android:src="@drawable/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:elevation="0dp" />
 
     <ProgressBar
         android:id="@+id/horizontalProgressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="3dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/white"
+        android:layout_marginTop="30dp"
         android:indeterminate="false"
         android:max="10"
         android:progress="0"
@@ -29,8 +39,7 @@
         android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="(3 + 4) x 6"
-        android:textSize="30sp"
-        android:textColor="@color/white"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +60,7 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@drawable/black_pb_bg"
+            android:background="@drawable/white_pb_bg"
             android:indeterminate="false"
             android:progressDrawable="@drawable/blue_pb_bg"
             android:rotation="-90" />
@@ -62,8 +71,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="10"
-            android:textColor="@color/white"
-            android:textSize="80sp"
+            android:textSize="60sp"
             android:textStyle="bold" />
     </FrameLayout>
 
@@ -72,6 +80,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,7 +102,6 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:text="29"
-                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 />
@@ -104,7 +112,6 @@
                 android:background="@drawable/button_bg"
                 android:layout_weight="1"
                 android:text="29"
-                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 />
@@ -124,7 +131,6 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:text="29"
-                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 />
@@ -135,7 +141,6 @@
                 android:background="@drawable/button_bg"
                 android:layout_weight="1"
                 android:text="29"
-                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 />
