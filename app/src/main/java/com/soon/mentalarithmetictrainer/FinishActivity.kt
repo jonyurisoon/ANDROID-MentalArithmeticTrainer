@@ -1,34 +1,36 @@
 package com.soon.mentalarithmetictrainer
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.soon.mentalarithmetictrainer.databinding.ActivityFinishBinding
 
 class FinishActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityFinishBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_finish)
+        binding = ActivityFinishBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val score = intent.getIntExtra("score", 0)
-        val data:ArrayList<Question> = intent.getSerializableExtra("dataSet") as ArrayList<Question>
+        val data: ArrayList<Question> = intent.getSerializableExtra("dataSet") as ArrayList<Question>
 
-        val tvScore:TextView = findViewById(R.id.tvScore)
-        tvScore.text = "Your Score\n$score/10"
+        binding.tvScore.text = "Your Score\n$score/10"
 
         setAdapterRecyclerView(data)
 
-        val btnHome:Button = findViewById(R.id.btnHome)
-        btnHome.setOnClickListener { finish() }
+        binding.btnHome.setOnClickListener { finish() }
     }
 
-    private fun setAdapterRecyclerView(data:ArrayList<Question>) {
-        val recyclerView:RecyclerView = findViewById(R.id.rvQuestionList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+    private fun setAdapterRecyclerView(data: ArrayList<Question>) {
+        binding.rvQuestionList.layoutManager = LinearLayoutManager(this)
 
         val adapter = QuestionAdapter(data)
-        recyclerView.adapter = adapter
+        binding.rvQuestionList.adapter = adapter
     }
 }

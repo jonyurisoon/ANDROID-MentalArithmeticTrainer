@@ -2,29 +2,18 @@ package com.soon.mentalarithmetictrainer
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.soon.mentalarithmetictrainer.databinding.ItemQuestionRowBinding
 
-class QuestionAdapter(private val dataSet: ArrayList<Question>):
-        RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
+class QuestionAdapter(private val dataSet: ArrayList<Question>) :
+    RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
 
-    class ViewHolder (view: View):RecyclerView.ViewHolder(view) {
-        val tvProblem:TextView = view.findViewById(R.id.rvTvProblem)
-        val option1:TextView = view.findViewById(R.id.rvTvOption1)
-        val option2:TextView = view.findViewById(R.id.rvTvOption2)
-        val option3:TextView = view.findViewById(R.id.rvTvOption3)
-        val option4:TextView = view.findViewById(R.id.rvTvOption4)
-        val selectedAnswer:TextView = view.findViewById(R.id.selectedAnswer)
-        val correctAnswer:TextView = view.findViewById(R.id.correctAnswer)
-
-    }
+    class ViewHolder(val binding: ItemQuestionRowBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       val view = LayoutInflater.from(parent.context)
-           .inflate(R.layout.item_question_row,parent,false)
-        return ViewHolder(view)
+        val binding = ItemQuestionRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -32,19 +21,21 @@ class QuestionAdapter(private val dataSet: ArrayList<Question>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvProblem.text = dataSet[position].problem
-        holder.option1.text = dataSet[position].option1
-        holder.option2.text = dataSet[position].option2
-        holder.option3.text = dataSet[position].option3
-        holder.option4.text = dataSet[position].option4
-        holder.selectedAnswer.text = "Your Answer: ${dataSet[position].selectedOption}"
-        holder.correctAnswer.text = "Correct Answer: ${dataSet[position].answer}"
+        val currentQuestion = dataSet[position]
+        with(holder.binding) {
+            rvTvProblem.text = currentQuestion.problem
+            rvTvOption1.text = currentQuestion.option1
+            rvTvOption2.text = currentQuestion.option2
+            rvTvOption3.text = currentQuestion.option3
+            rvTvOption4.text = currentQuestion.option4
+            selectedAnswer.text = "Your Answer: ${currentQuestion.selectedOption}"
+            correctAnswer.text = "Correct Answer: ${currentQuestion.answer}"
+        }
 
-        if (position%2 != 0) {
-            holder.itemView.setBackgroundColor(Color.parseColor("#000000"))
-        }else {
-            holder.itemView.setBackgroundColor(Color.parseColor("#3C3F41"))
+        if (position % 2 != 0) {
+            holder.binding.root.setBackgroundColor(Color.parseColor("#000000"))
+        } else {
+            holder.binding.root.setBackgroundColor(Color.parseColor("#3C3F41"))
         }
     }
-
 }

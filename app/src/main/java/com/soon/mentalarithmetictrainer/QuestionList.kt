@@ -32,7 +32,7 @@ class QuestionList (private val questionType:String?){
             optionList.add(answer.toString())
             optionList.add((answer + Random.nextInt(-9, 10)).toString())
             optionList.add((answer + Random.nextInt(-9, 10)).toString())
-            optionList.add((answer + Random.nextInt(-9, 10)).toString())
+            optionList.add("N")
         }
         else {
             correctAnswer = "NA"
@@ -40,7 +40,7 @@ class QuestionList (private val questionType:String?){
             optionList.add((answer + Random.nextInt(-9, 10)).toString())
             optionList.add((answer + Random.nextInt(-9, 10)).toString())
             optionList.add((answer + Random.nextInt(-9, 10)).toString())
-            optionList.add((answer + Random.nextInt(-9, 10)).toString())
+            optionList.add("NA")
         }
         optionList.shuffle()
         return optionList
