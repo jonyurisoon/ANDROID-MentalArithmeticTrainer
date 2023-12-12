@@ -7,7 +7,7 @@ import android.os.CountDownTimer
 import com.soon.mentalarithmetictrainer.databinding.ActivityPlayBinding
 
 class PlayActivity : AppCompatActivity() {
-    private var binding:ActivityPlayBinding? = null
+    private var binding: ActivityPlayBinding? = null
 
     private var position = 0
     private var timer: CountDownTimer? = null
@@ -42,56 +42,72 @@ class PlayActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateQuestion(){
-        binding?.tvQuestion?.text = questionDataList[position].problem
+    private fun updateQuestion() {
+        if (position < questionDataList.size) {
+            binding?.tvQuestion?.text = questionDataList[position].problem
+        } else {
+            // Handle the case when there are no more questions
+        }
     }
 
-    private fun updateOption(){
-        binding?.btnOption1?.text = questionDataList[position].option1
-        binding?.btnOption2?.text = questionDataList[position].option2
-        binding?.btnOption3?.text = questionDataList[position].option3
-        binding?.btnOption4?.text = questionDataList[position].option4
+    private fun updateOption() {
+        if (position < questionDataList.size) {
+            binding?.btnOption1?.text = questionDataList[position].option1
+            binding?.btnOption2?.text = questionDataList[position].option2
+            binding?.btnOption3?.text = questionDataList[position].option3
+            binding?.btnOption4?.text = questionDataList[position].option4
+        } else {
+            // Handle the case when there are no more questions
+        }
     }
 
     private fun updateHorizontalProgressBar() {
-        binding?.horizontalProgressBar?.incrementProgressBy(1)
+        if (position < questionDataList.size) {
+            binding?.horizontalProgressBar?.incrementProgressBy(1)
+        }
     }
 
-    private fun setGivenTime(level:String?) {
-        timeGiven = when(level) {
+    private fun setGivenTime(level: String?) {
+        timeGiven = when (level) {
             "easy" -> 10000
             "medium" -> 12000
             else -> 15000
         }
     }
 
-    private fun startTimer () {
-        var count = timeGiven/1000
-        binding?.circularProgressBar?.progress = timeGiven/1000
-        binding?.circularProgressBar?.max = timeGiven/1000
+    private fun startTimer() {
+        if (position < questionDataList.size) {
+            var count = timeGiven / 1000
+            binding?.circularProgressBar?.progress = timeGiven / 1000
+            binding?.circularProgressBar?.max = timeGiven / 1000
 
-        timer = object : CountDownTimer(timeGiven.toLong(),1000) {
-            override fun onTick(p0: Long) {
-                binding?.circularProgressBar?.incrementProgressBy(-1)
-                count--
-                binding?.tvCountDown?.text = count.toString()
-            }
+            timer = object : CountDownTimer(timeGiven.toLong(), 1000) {
+                override fun onTick(p0: Long) {
+                    binding?.circularProgressBar?.incrementProgressBy(-1)
+                    count--
+                    binding?.tvCountDown?.text = count.toString()
+                }
 
-            override fun onFinish() {
-                setNextRound()
-            }
-        }.start()
+                override fun onFinish() {
+                    setNextRound()
+                }
+            }.start()
+        }
     }
 
-    private fun onSelectOption(option:String) {
-        if (option == questionDataList[position].answer)
-            score++
-         questionDataList[position].selectedOption = option
-         setNextRound()
+    private fun onSelectOption(option: String) {
+        if (position < questionDataList.size) {
+            if (option == questionDataList[position].answer)
+                score++
+            questionDataList[position].selectedOption = option
+            setNextRound()
+        } else {
+            // Handle the case when there are no more questions
+        }
     }
 
     private fun setNextRound() {
-        if (position < 9) {
+        if (position < questionDataList.size - 1) {
             position++
             timer?.cancel()
             timer = null
@@ -99,9 +115,9 @@ class PlayActivity : AppCompatActivity() {
             updateQuestion()
             updateOption()
             startTimer()
-        }
-        else
+        } else {
             endGame()
+        }
     }
 
     private fun endGame() {
@@ -114,5 +130,4 @@ class PlayActivity : AppCompatActivity() {
         timer = null
         binding = null
     }
-
 }

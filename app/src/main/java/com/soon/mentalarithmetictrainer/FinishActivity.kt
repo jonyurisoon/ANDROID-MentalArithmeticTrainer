@@ -1,36 +1,50 @@
 package com.soon.mentalarithmetictrainer
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.soon.mentalarithmetictrainer.databinding.ActivityFinishBinding
 
 class FinishActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityFinishBinding
+    private var binding: ActivityFinishBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFinishBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding?.root)
 
+        // Retrieve data from the intent
         val score = intent.getIntExtra("score", 0)
-        val data: ArrayList<Question> = intent.getSerializableExtra("dataSet") as ArrayList<Question>
+        val questionDataList = intent.getSerializableExtra("dataSet") as ArrayList<Question>
 
-        binding.tvScore.text = "Your Score\n$score/10"
+        // Display the score
+        binding?.tvScore?.text = "Your Score: $score"
 
-        setAdapterRecyclerView(data)
-
-        binding.btnHome.setOnClickListener { finish() }
+        // Display correct answers
+        displayCorrectAnswers(questionDataList)
     }
 
-    private fun setAdapterRecyclerView(data: ArrayList<Question>) {
-        binding.rvQuestionList.layoutManager = LinearLayoutManager(this)
+    private fun displayCorrectAnswers(questionDataList: ArrayList<Question>) {
+        // Select the first 10 questions
+        val selectedQuestions = if (questionDataList.size >= 10) {
+            questionDataList.subList(0, 10)
+        } else {
+            questionDataList
+        }
 
-        val adapter = QuestionAdapter(data)
-        binding.rvQuestionList.adapter = adapter
+        val adapter = QuestionAdapter(ArrayList(selectedQuestions))
+        binding?.rvCorrectAnswers?.layoutManager = LinearLayoutManager(this)
+        binding?.rvCorrectAnswers?.adapter = adapter
+    }
+    fun goBackToMain(view: android.view.View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

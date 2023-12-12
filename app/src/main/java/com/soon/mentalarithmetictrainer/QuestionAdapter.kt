@@ -33,9 +33,9 @@ class QuestionAdapter(private val dataSet: ArrayList<Question>) :
         }
 
         if (position % 2 != 0) {
-            holder.binding.root.setBackgroundColor(Color.parseColor("#000000"))
+            holder.binding.root.setBackgroundColor(Color.parseColor("#EEEEEE"))
         } else {
-            holder.binding.root.setBackgroundColor(Color.parseColor("#3C3F41"))
+            holder.binding.root.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
         }
     }
 }
