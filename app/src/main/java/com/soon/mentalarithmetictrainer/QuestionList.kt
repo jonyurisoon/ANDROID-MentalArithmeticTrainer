@@ -27,23 +27,38 @@ class QuestionList(private val questionType: String?) {
     private fun getOption(position: Int): ArrayList<String> {
         val optionList = ArrayList<String>(4)
         var answer = questionList[position].second
+
         if (answer != 777777777) {
             correctAnswer = answer.toString()
             optionList.add(answer.toString())
-            optionList.add((answer + Random.nextInt(-9, 10)).toString())
-            optionList.add((answer + Random.nextInt(-9, 10)).toString())
-            optionList.add("NA")
+
+            // Generate three more options
+            for (i in 0 until 3) {
+                var newOption: String
+                do {
+                    newOption = (answer + Random.nextInt(-9, 10)).toString()
+                } while (optionList.contains(newOption) || newOption == correctAnswer)
+
+                optionList.add(newOption)
+            }
         } else {
             correctAnswer = "NA"
-            answer = Random.nextInt(1, 4000)
-            optionList.add((answer + Random.nextInt(-9, 10)).toString())
-            optionList.add((answer + Random.nextInt(-9, 10)).toString())
-            optionList.add((answer + Random.nextInt(-9, 10)).toString())
-            optionList.add("NA")
+
+            // Generate three options
+            for (i in 0 until 3) {
+                var newOption: String
+                do {
+                    newOption = (Random.nextInt(1, 4000) + Random.nextInt(-9, 10)).toString()
+                } while (optionList.contains(newOption))
+
+                optionList.add(newOption)
+            }
         }
+
         optionList.shuffle()
         return optionList
     }
+
 
     fun getQuestionList(): ArrayList<Question> {
         setQuestion()

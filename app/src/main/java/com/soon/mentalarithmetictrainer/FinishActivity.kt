@@ -26,7 +26,6 @@ class FinishActivity : AppCompatActivity() {
     }
 
     private fun displayCorrectAnswers(questionDataList: ArrayList<Question>) {
-        // Select the first 10 questions
         val selectedQuestions = if (questionDataList.size >= 10) {
             questionDataList.subList(0, 10)
         } else {
