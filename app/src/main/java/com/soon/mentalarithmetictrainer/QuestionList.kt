@@ -1,5 +1,9 @@
 package com.soon.mentalarithmetictrainer
 
+import com.soon.mentalarithmetictrainer.models.Question
+import com.soon.mentalarithmetictrainer.difficulty.Easy
+import com.soon.mentalarithmetictrainer.difficulty.Hard
+import com.soon.mentalarithmetictrainer.difficulty.Medium
 import kotlin.random.Random
 
 class QuestionList(private val questionType: String?) {

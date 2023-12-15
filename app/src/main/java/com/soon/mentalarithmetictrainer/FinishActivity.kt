@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.soon.mentalarithmetictrainer.adapters.QuestionAdapter
 import com.soon.mentalarithmetictrainer.databinding.ActivityFinishBinding
+import com.soon.mentalarithmetictrainer.models.Question
 
 class FinishActivity : AppCompatActivity() {
     private var binding: ActivityFinishBinding? = null

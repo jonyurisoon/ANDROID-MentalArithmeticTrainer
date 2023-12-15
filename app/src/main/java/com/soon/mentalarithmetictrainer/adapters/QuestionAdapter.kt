@@ -1,9 +1,10 @@
-package com.soon.mentalarithmetictrainer
+package com.soon.mentalarithmetictrainer.adapters
 
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.soon.mentalarithmetictrainer.models.Question
 import com.soon.mentalarithmetictrainer.databinding.ItemQuestionRowBinding
 
 class QuestionAdapter(private val dataSet: ArrayList<Question>) :

@@ -1,4 +1,4 @@
-package com.soon.mentalarithmetictrainer
+package com.soon.mentalarithmetictrainer.difficulty
 
 import kotlin.random.Random
 
